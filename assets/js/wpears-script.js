@@ -160,6 +160,10 @@
 			var data_val = $(this).data('value');
 				data_val = data_val.toLowerCase();
 			updateUrl(data_key,data_val);
+		}else if( filter_by == "tag" ) {
+			var data_key = 'product_tag';
+			var data_val = $(this).data('value');
+			updateUrl(data_key,data_val);
 		}else {
 			console.log('no filter yet!');
 		}

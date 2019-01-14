@@ -63,6 +63,7 @@ if ( ! class_exists( 'wpears_product_filter' ) ) {
 		//filter by tax query
 		function filter_get_posts($q) {
 			$pro_cat      = $_GET['product-category'];
+			$pro_tag      = $_GET['product_tag'];
 			$pro_term     = $_GET['product-term'];
 			$orderby      = $_GET['orderby'];
 
@@ -94,6 +95,14 @@ if ( ! class_exists( 'wpears_product_filter' ) ) {
 			                'taxonomy'        => 'product_cat',
 			                'field'           => 'term_id',
 			                'terms'           =>  array($pro_cat),
+			            )
+			        );
+					}elseif( isset($pro_tag) && !isset($pro_term) && !isset($orderby) && !isset($pro_cat) ) {
+	    		$tax_query[] = array( 
+			            array(
+			                'taxonomy'        => 'product_tag',
+			                'field'           => 'term_id',
+			                'terms'           =>  array($pro_tag),
 			            )
 			        );
 		    }elseif( isset($orderby) ) {
